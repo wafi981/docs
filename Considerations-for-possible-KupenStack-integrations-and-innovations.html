@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Considerations for possible KupenStack integrations and innovations &mdash; Magma India Documentation 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Magma India Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction To Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conclusion.html">Conclusion</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Magma India Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Considerations for possible KupenStack integrations and innovations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kupenstack/docs/blob/master/docs/Considerations-for-possible-KupenStack-integrations-and-innovations.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="considerations-for-possible-kupenstack-integrations-and-innovations">
+<h1>Considerations for possible KupenStack integrations and innovations<a class="headerlink" href="#considerations-for-possible-kupenstack-integrations-and-innovations" title="Permalink to this headline">¶</a></h1>
+<p>This section highlights the possible future integrations of KupenStack with various technologies and paradigms.</p>
+<div class="section" id="virtual-machine-images-with-tagging">
+<h2>Virtual Machine Images with tagging<a class="headerlink" href="#virtual-machine-images-with-tagging" title="Permalink to this headline">¶</a></h2>
+<p>Process container technology open-sourced by Docker brought immutable images with tagging. Tagged images are
+handy in the GitOps world as this provides version control over image releases. In the process of making OpenStack
+cloud-native, we encourage to have similar tagging for Virtual Machines artifacts in KupenStack. Possibly, the OCI
+standard can be reused to store Virtual Machine artifacts. This gives benefits like completely reusing OCI image
+registries and hubs. KupenStack can internally implement a component that automatically converts these OCI artifacts
+to the respective image format for the hypervisor. OCI standard is being used to create non-running container artifacts
+by open-source projects like Cloud-Native Application Bundles [22] and manifest-bundles ( Kubernetes SIG
+Cluster-Lifecycle) .</p>
+</div>
+<div class="section" id="building-kubernetes-concepts-on-top-of-kupenstack-resources">
+<h2>Building Kubernetes concepts on top of KupenStack Resources<a class="headerlink" href="#building-kubernetes-concepts-on-top-of-kupenstack-resources" title="Permalink to this headline">¶</a></h2>
+<p>With the introduction of KupenStack, there is space to build more Kubernetes concepts( like Daemonset, Deployment,
+RepicaSets, Jobs, etc.) on top of KupenStack custom resources for better management of OpenStack resources.</p>
+</div>
+<div class="section" id="crossplane">
+<h2>Crossplane<a class="headerlink" href="#crossplane" title="Permalink to this headline">¶</a></h2>
+<p><strong>Crossplane</strong> is an open-source project that aims to build a unified control plane for multi-vendor resources running
+remotely. For example, a Crossplane user should be able to define a unified API through Crossplane Composite Resource
+Definition (XRD) for SQL service offered from multiple vendors covering AWS, GCP, etc. Crossplane XRD
+assumes underlying Managed Resources to be implemented by the respective provider. As of this writing, Crossplane
+maintains the implementation of providers aws, gcp, alibaba, azure, and ibm in its open-source repos, but there is no
+implementation on managing remote OpenStack resources in any open-source project. These provider implementations
+in Crossplane only focus on provisioning and managing resources running remotely and keep no account of topology of
+workload placement as there is no cluster-level management. Crossplane assumes that cloud infrastructure is running
+remotely and doesn’t focus on scaling, LCM, configuration management, and upgradation of the cloud infrastructure
+itself. It should be possible for Crossplane XRDs to integrate any implementation of KupenStack custom resources
+along with other public cloud alternatives.</p>
+</div>
+<div class="section" id="cloud-provider-openstack">
+<h2>Cloud Provider OpenStack<a class="headerlink" href="#cloud-provider-openstack" title="Permalink to this headline">¶</a></h2>
+<p><strong>Cloud-Provider-OpenStack</strong> is another open-source CNCF project under SIG-Cloud-Provider. With the
+Cloud-Provider-OpenStack project, we can use OpenStack resources like Octavia-LoadBalancer and Cinder-Volumes as
+a provider to Kubernetes resources. For example, with the Cinder CSI Plugin in the Cloud-Provider-OpenStack project,
+we can get Persistence-Volume(PV) backed by Cinder inside Kubernetes. As of this writing, Cloud-Provider-OpenStack
+has some work on integration on Octavia, Cinder, Keystone, Manila, Barbican, Magnum components to Kubernetes.
+These integrations can be reused in KupenStack; this gives use cases like using Cinder volumes of OpenStack with
+Pods as well as VM.</p>
+</div>
+<div class="section" id="cluster-api-capi-openstack-magnum">
+<h2>Cluster-API (CAPI) &amp; OpenStack-Magnum<a class="headerlink" href="#cluster-api-capi-openstack-magnum" title="Permalink to this headline">¶</a></h2>
+<p><strong>Cluster-API</strong> or <strong>CAPI</strong> is another open-source CNCF project under SIG-Cluster-Lifecycle. CAPI gives a
+declarative way of provisioning, upgrading, and operating multiple Kubernetes clusters. CAPI can provision Kubernetes
+clusters on various targets like bare metal, AWS, GCP, Azure, and OpenStack. Integration of CAPI-OpenStack with
+KupenStack should be possible, giving us deployment topologies like Kubernetes-on-OpenStack-on-Kubernetes(
+KO3K). This can be used in a scenario where admins operating on KupenStack deployment want to provide a separate
+isolated Kubernetes cluster to their tenants. In some ways, this is multitenant Kubernetes. It is to note that the
+OpenStack-Magnum project is also a Kubernetes-as-a-Service project but for OpenStack. Ironically, for KupenStack
+both can be used. Hence choosing out of CAPI and OpenStack-Magnum depends on the user requirements.</p>
+</div>
+<div class="section" id="airship">
+<h2>Airship<a class="headerlink" href="#airship" title="Permalink to this headline">¶</a></h2>
+<p><strong>Airship</strong> is an open-source project that declaratively automates cloud provisioning. A cloud software may be OpenStack,
+Ceph, Kubernetes, etc. For OpenStack, Airship internally uses OpenStack-Helm project, and this is where it overlaps
+with KupenStack. But Airship does not provide OpenStack resources as custom resources in Kubernetes, and to achieve
+this, Airship can integrate, and provision KupenStack based OpenStack-Helm cloud. So, hierarchy changes slightly,
+and KupenStack can become the middle layer between Airship and OpenStack-Helm project.</p>
+</div>
+<div class="section" id="anthos">
+<h2>Anthos<a class="headerlink" href="#anthos" title="Permalink to this headline">¶</a></h2>
+<p><strong>Anthos</strong> is a hybrid and multi-cloud platform leveraging Kubernetes; it lets us run containerized Kubernetes applications
+without any modification across multiple platforms, clusters, and locations being on-prem or public cloud. As
+KupenStack builds OpenStack resources as first-class citizens into Kubernetes, this means in the future, we can see a
+true hybrid cloud, multi-cloud deployments for OpenStack through Anthos with no changes.</p>
+</div>
+<div class="section" id="kubefed">
+<h2>KubeFed<a class="headerlink" href="#kubefed" title="Permalink to this headline">¶</a></h2>
+<p><strong>KubeFed(Kubernetes Cluster Federation)</strong> is another open-source CNCF project which is under SIG-multicluster.
+KubeFed is a multi-cluster level project which aims to coordinate and manage resources over multiple clusters.</p>
+<p>KubeFed is extremely useful in complex multi-cluster use cases such as deploying multi-geo applications and failure
+domains. As an integration to KupenStack, similar Federation implementation can be extended to KupenStack resources.
+Here we would like to point out our example reference implementation in this paper. We proposed ignoring concepts of
+Regions and Domain in KupenStack, as ignoring those simplifies design and such higher-level integration on top like
+KubeFed become simpler to achieve and use in practice.</p>
+</div>
+<div class="section" id="cloud-native-network-function-virtualization-infrastructure">
+<h2>Cloud-Native Network Function Virtualization infrastructure<a class="headerlink" href="#cloud-native-network-function-virtualization-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>There has been a lot of innovation and development in cloud technologies since the introduction of NFV. Over the last
+two years, as of writing this paper, more and more SDOs(Standards Defining Organizations) like ETSI, CNTT have
+adopted cloud-native in their definitions. Which makes Kubernetes a more suitable choice as seen in standard references
+like RI2 (Reference Implementation 2) in CNTT. But still, the unsolved problem happened to be an NFVi platform
+of choice that is cloud-native and supports both Container as well as Virtual Machine Workloads. KupenStack can
+greatly solve this problem as it is Kubernetes based and brings OpenStack to Kubernetes, a complete IaaS platform.
+This gives cloud-native platform to network orchestrators like ONAP for running 5G implementations having
+cloud-native CNFs and VNFs.</p>
+</div>
+<div class="section" id="kubevirt-kata-containers-etc">
+<h2>KubeVirt, Kata Containers, etc.<a class="headerlink" href="#kubevirt-kata-containers-etc" title="Permalink to this headline">¶</a></h2>
+<p><strong>KubeVirt</strong> is an open-source project under CNCF that adds virtual machines support in Kubernetes. Also, there are
+Kata containers, which are lightweight Virtual Machines or MicroVMs that support running as Pods in Kubernetes.
+These are open-source projects where KupenStack overlaps, and if requirements are only running Virtual Machines,
+then KupenStack is more than just Virtual Machines. KupenStack brings a complete OpenStack IaaS.</p>
+</div>
+<div class="section" id="terraform-provider-openstack">
+<h2>Terraform-Provider-OpenStack<a class="headerlink" href="#terraform-provider-openstack" title="Permalink to this headline">¶</a></h2>
+<p><strong>Terraform</strong> is an open-source infrastructure as code automation tool that uses a declarative configuration language.
+Terraform-Provider-OpenStack has a terraform implementation for provisioning OpenStack resources like Virtual
+Machines, Images, Keypair, etc. This is where KupenStack overlaps with Terraform-Provider-OpenStack with the
+advantage that KupenStack is Kubernetes control-plane based and can closely work with core Kubernetes resources. As
+far as automation is concerned, Helm charts can easily provide automation to KupenStack resources.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Magma India.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
