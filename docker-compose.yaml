@@ -16,8 +16,8 @@ services:
 
         sphinx-quickstart \
           --no-sep \
-          --project "Magma India Documentation" \
-          --author "Magma India" \
+          --project "Kupenstack Documentation" \
+          --author "Kupenstack" \
           --release "0.1.0" \
           --language "en" \
           --ext-autodoc \
