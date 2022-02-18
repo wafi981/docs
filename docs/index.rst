@@ -35,3 +35,22 @@ Contents
    Cloud-Native OpenStack as-code on Kubernetes
    Considerations for possible KupenStack integrations and innovations
    Conclusion
+
+.. Left pannel
+
+.. toctree::
+   :caption: Introduction
+   :maxdepth: 2
+   :hidden:
+
+   Introduction
+   Cloud-Native-OpenStack-as-code-on-Kubernetes
+   Considerations-for-possible-KupenStack-integrations-and-innovations
+   Conclusion
+
+.. toctree::
+   :caption: Getting started
+   :maxdepth: 2
+   :hidden:
+
+   .. empty Work under progress
